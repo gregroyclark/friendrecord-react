@@ -125,10 +125,7 @@ const AddFriend = () => {
         <hr className='mb-4' />
       </form>
 
-      <button
-        onClick={() => goToFriendList()}
-        className='rounded-md m-2 p-2 border shadow-sm bg-blue-200 hover:bg-blue-300'
-      >
+      <button className='rounded-md m-2 p-2 border shadow-sm bg-blue-200 hover:bg-blue-300'>
         <Link to='/FriendList'>Friends List</Link>
       </button>
     </div>
