@@ -8,7 +8,7 @@ const UpdateFriend = ({ friend }) => {
     event.preventDefault();
     try {
       const response = await fetch(
-        `https://friendrecord-express.onrender.com/api/friends/${friend.id}`,
+        `https://friendrecord.netlify.app/api/friends/${friend.id}`,
         {
           method: 'PUT',
           headers: {
@@ -28,7 +28,7 @@ const UpdateFriend = ({ friend }) => {
   const deleteFriend = async (id) => {
     try {
       const response = await fetch(
-        `https://friendrecord-express.onrender.com/api/friends/${id}`,
+        `https://friendrecord.netlify.app/api/friends/${id}`,
         {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` },

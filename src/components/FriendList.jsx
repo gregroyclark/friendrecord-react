@@ -11,7 +11,7 @@ const FriendList = ({ userId }) => {
         const userId = localStorage.getItem('userId');
         console.log('userId: ', userId);
         const response = await fetch(
-          `https://friendrecord-express.onrender.com/api/friends/readAllFriends/${userId}`,
+          `https://friendrecord.netlify.app/api/friends/readAllFriends/${userId}`,
           {
             method: 'GET',
             headers: {
