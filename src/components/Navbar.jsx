@@ -5,7 +5,7 @@ import logo from '../assets/friendrecord.png';
 const Navbar = () => {
   return (
     <div className='flex border-b items-center mb-4 p-2 shadow-sm'>
-      <a>
+      <Link to={'/'}>
         <img
           src={logo}
           alt='friendrecord logo'
@@ -13,7 +13,7 @@ const Navbar = () => {
           width={125}
           className='m-2 flex justify-start'
         />
-      </a>
+      </Link>
       <div className='m-2'>
         <ul className='flex flex-row'>
           <Link to='/AddFriend'>
