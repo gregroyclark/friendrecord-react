@@ -33,28 +33,32 @@ const FriendList = ({ userId }) => {
   }, [userId]);
 
   if (friends === null) {
-    return <div className='flex justify-center items-center'>Loading...</div>;
+    return (
+      <div className='flex justify-center items-center m-2 p-2 rounded-sm shadow-md '>
+        Loading...
+      </div>
+    );
   }
 
   return (
-    <table>
+    <table className='shadow-md m-2 p-2 rounded-sm'>
       <thead>
         <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Notes</th>
+          <th className='m-2 p-2'>First Name</th>
+          <th className='m-2 p-2'>Last Name</th>
+          <th className='m-2 p-2'>Email</th>
+          <th className='m-2 p-2'>Phone</th>
+          <th className='m-2 p-2'>Notes</th>
         </tr>
       </thead>
       <tbody>
         {friends.map((friend) => (
           <tr key={friend.id}>
-            <td>{friend.firstName}</td>
-            <td>{friend.lastName}</td>
-            <td>{friend.email}</td>
-            <td>{friend.phoneNumber}</td>
-            <td>{friend.notes}</td>
+            <td className='m-2 p-2'>{friend.firstName}</td>
+            <td className='m-2 p-2'>{friend.lastName}</td>
+            <td className='m-2 p-2'>{friend.email}</td>
+            <td className='m-2 p-2'>{friend.phoneNumber}</td>
+            <td className='m-2 p-2'>{friend.notes}</td>
           </tr>
         ))}
       </tbody>
