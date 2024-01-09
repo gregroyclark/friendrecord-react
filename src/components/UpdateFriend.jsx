@@ -31,7 +31,10 @@ const UpdateFriend = ({ friend }) => {
         `https://friendrecord-express.onrender.com/api/friends/${id}`,
         {
           method: 'DELETE',
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': true,
+          },
         }
       );
       const data = await response.json();

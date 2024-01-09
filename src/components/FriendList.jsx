@@ -16,6 +16,7 @@ const FriendList = ({ userId }) => {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${token}`,
+              'Access-Control-Allow-Origin': true,
             },
           }
         );

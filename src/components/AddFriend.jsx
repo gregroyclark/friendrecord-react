@@ -27,6 +27,7 @@ const AddFriend = () => {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': true,
           },
           body: JSON.stringify(friend),
         }
