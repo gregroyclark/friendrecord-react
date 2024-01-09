@@ -21,7 +21,7 @@ const AddFriend = () => {
       console.log('userId: ', userId);
       setFriend({ ...friend, userId });
       const response = await fetch(
-        'https://friendrecord.netlify.app/api/friends/createFriend',
+        'https://friendrecord-express.onrender.com/api/friends/createFriend',
         {
           method: 'POST',
           headers: {
@@ -136,4 +136,4 @@ const AddFriend = () => {
 
 export default AddFriend;
 
-// https://friendrecord.netlify.app
+// https://friendrecord-express.onrender.com

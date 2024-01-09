@@ -10,7 +10,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        'https://friendrecord.netlify.app/api/users/login',
+        'https://friendrecord-express.onrender.com/api/users/login',
         {
           method: 'POST',
           headers: {

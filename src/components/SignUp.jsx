@@ -12,7 +12,7 @@ const SignUp = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        'https://friendrecord.netlify.app/api/users/register',
+        'https://friendrecord-express.onrender.com/api/users/register',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
