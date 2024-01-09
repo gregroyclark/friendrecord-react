@@ -15,10 +15,9 @@ const SignUp = () => {
         'https://friendrecord-express.onrender.com/api/users/register',
         {
           method: 'POST',
-          mode: 'no-cors',
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': true,
+            // 'Access-Control-Allow-Origin': true,
           },
           body: JSON.stringify({ firstName, lastName, email, password }),
         }
