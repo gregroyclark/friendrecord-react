@@ -33,7 +33,8 @@ const UpdateFriend = ({ friend }) => {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${token}`,
-            'Access-Control-Allow-Origin': true,
+            'Access-Control-Allow-Origin':
+              'https://friendrecord-express.onrender.com',
           },
         }
       );
