@@ -16,8 +16,7 @@ const Login = () => {
           headers: {
             // Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':
-              'https://friendrecord-express.onrender.com',
+            'Access-Control-Allow-Origin': 'https://friendrecord.netlify.app',
           },
           body: JSON.stringify({ email, password }),
         }
