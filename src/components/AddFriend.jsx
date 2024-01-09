@@ -21,7 +21,7 @@ const AddFriend = () => {
       console.log('userId: ', userId);
       setFriend({ ...friend, userId });
       const response = await fetch(
-        'http://localhost:5000/api/friends/createFriend',
+        'https://friendrecord-express.onrender.com/api/friends/createFriend',
         {
           method: 'POST',
           headers: {
@@ -135,3 +135,5 @@ const AddFriend = () => {
 };
 
 export default AddFriend;
+
+// https://friendrecord-express.onrender.com

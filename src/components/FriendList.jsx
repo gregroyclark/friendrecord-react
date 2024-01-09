@@ -11,7 +11,7 @@ const FriendList = ({ userId }) => {
         const userId = localStorage.getItem('userId');
         console.log('userId: ', userId);
         const response = await fetch(
-          `http://localhost:5000/api/friends/readAllFriends/${userId}`,
+          `https://friendrecord-express.onrender.com/api/friends/readAllFriends/${userId}`,
           {
             method: 'GET',
             headers: {

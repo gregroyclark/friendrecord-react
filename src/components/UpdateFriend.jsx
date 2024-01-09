@@ -8,7 +8,7 @@ const UpdateFriend = ({ friend }) => {
     event.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/friends/${friend.id}`,
+        `https://friendrecord-express.onrender.com/api/friends/${friend.id}`,
         {
           method: 'PUT',
           headers: {
@@ -27,10 +27,13 @@ const UpdateFriend = ({ friend }) => {
 
   const deleteFriend = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/friends/${id}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        `https://friendrecord-express.onrender.com/api/friends/${id}`,
+        {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const data = await response.json();
       console.log(data);
     } catch (error) {
