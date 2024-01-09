@@ -19,6 +19,7 @@ const Home = () => {
         Welcome to friendrecord!
       </h1>
       <hr className='mb-4' />
+      <div className='m-2'>Howdy!</div>
       {isLoggedIn ? (
         <>
           <Link to={'/AddFriend'}>
@@ -46,7 +47,6 @@ const Home = () => {
           </Link>
         </>
       )}
-      <div className='m-2'>Howdy!</div>
     </div>
   );
 };
