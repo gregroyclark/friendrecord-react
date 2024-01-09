@@ -17,8 +17,7 @@ const SignUp = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':
-              'https://friendrecord-express.onrender.com',
+            'Access-Control-Allow-Origin': 'https://friendrecord.netlify.app',
           },
           body: JSON.stringify({ firstName, lastName, email, password }),
         }
