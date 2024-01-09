@@ -5,6 +5,7 @@ import './index.css';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 
 import Navbar from './components/Navbar';
+import Home from './components/Home';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AddFriend from './components/AddFriend';
@@ -15,8 +16,8 @@ function App() {
   return (
     <Router>
       <Navbar />
-
       <Routes>
+        <Route path='/' element={<Home />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/SignUp' element={<SignUp />} />
         <Route
