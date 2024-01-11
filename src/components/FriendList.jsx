@@ -16,9 +16,9 @@ const FriendList = ({ userId }) => {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${token}`,
-              'Access-Control-Allow-Origin':
-                'https://friendrecord-express.onrender.com',
+              'Content-Type': 'application/json',
             },
+            credentials: 'include',
           }
         );
         // const text = await response.text();

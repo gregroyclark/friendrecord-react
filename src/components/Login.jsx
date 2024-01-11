@@ -14,10 +14,9 @@ const Login = () => {
         {
           method: 'POST',
           headers: {
-            // Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://friendrecord.netlify.app',
           },
+          credentials: 'include',
           body: JSON.stringify({ email, password }),
         }
       );

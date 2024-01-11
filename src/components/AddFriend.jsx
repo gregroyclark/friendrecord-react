@@ -27,9 +27,8 @@ const AddFriend = () => {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':
-              'https://friendrecord-express.onrender.com',
           },
+          credentials: 'include',
           body: JSON.stringify(friend),
         }
       );
