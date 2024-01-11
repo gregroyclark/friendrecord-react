@@ -52,7 +52,7 @@ const AddFriend = () => {
   };
 
   return (
-    <div className='shadow-md m-2 p-2 rounded-sm'>
+    <div className='m-2 p-2 rounded-sm shadow-md'>
       <h1 className='mb-4 flex justify-center text-lg font-semibold text-gray-600'>
         Add a new friend!
       </h1>
@@ -136,5 +136,3 @@ const AddFriend = () => {
 };
 
 export default AddFriend;
-
-// https://friendrecord-express.onrender.com
