@@ -39,7 +39,7 @@ function App() {
           }
         />
         <Route
-          path='/ViewFriend'
+          path='/ViewFriend/:id'
           element={
             <AuthenticatedRoute>
               <ViewFriend />
