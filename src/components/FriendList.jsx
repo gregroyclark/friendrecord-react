@@ -12,7 +12,7 @@ const FriendList = ({ userId }) => {
         const userId = localStorage.getItem('userId');
         console.log('userId: ', userId);
         const response = await fetch(
-          `https://friendrecord-express.onrender.com/api/friends/readAllFriends/${userId}`,
+          `http://localhost:5000/api/friends/readAllFriends/${userId}`,
           {
             method: 'GET',
             headers: {
@@ -67,7 +67,7 @@ const FriendList = ({ userId }) => {
               <td className='hidden sm:block m-2 p-2'>{friend.notes}</td>
               <th>
                 <button className='p-2'>
-                  <Link to={`/ViewFriend/${friend.id}`}>show</Link>
+                  <Link to={`/ViewFriend/${friend.id}`}>more</Link>
                 </button>
                 <button className='hidden p-2'>
                   <Link to={`/UpdateFriend/${friend.id}`}>edit</Link>
@@ -78,7 +78,7 @@ const FriendList = ({ userId }) => {
                     try {
                       const token = localStorage.getItem('jwt');
                       const response = await fetch(
-                        `https://friendrecord-express.onrender.com/api/friends/deleteFriend/${friend?.id}`,
+                        `http://localhost:5000/api/friends/deleteFriend/${friend?.id}`,
                         {
                           method: 'DELETE',
                           headers: { Authorization: `Bearer ${token}` },
