@@ -73,7 +73,7 @@ const FriendList = ({ userId }) => {
                   <Link to={`/UpdateFriend/${friend.id}`}>edit</Link>
                 </button>
                 <button
-                  className='p-2'
+                  className='hidden md:block p-2'
                   onClick={async () => {
                     try {
                       const token = localStorage.getItem('jwt');
