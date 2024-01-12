@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const ViewFriend = () => {
   const [friend, setFriend] = useState();
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
   if (!id) {
@@ -75,6 +77,46 @@ const ViewFriend = () => {
         <label className='m-2'>Notes:</label>
         <p className='m-2'>{friend.notes}</p>
       </div>
+      <hr className='mb-4' />
+      <div>
+        <Link to={`/UpdateFriend/${friend.id}`}>
+          <button className='border m-2 p-2 rounded-md shadow-sm bg-blue-200 hover:bg-blue-300'>
+            Update Friend
+          </button>
+        </Link>
+        <button
+          className='border m-2 p-2 rounded-md shadow-sm bg-red-200 hover:bg-red-300'
+          onClick={async () => {
+            try {
+              const token = localStorage.getItem('jwt');
+              const response = await fetch(
+                `http://localhost:5000/api/friends/deleteFriend/${friend?.id}`,
+                {
+                  method: 'DELETE',
+                  headers: { Authorization: `Bearer ${token}` },
+                  credentials: 'include',
+                }
+              );
+              if (!response.ok) {
+                throw new Error('HTTP error ' + response.status);
+              } else {
+                console.log('Successfully deleted friend');
+                navigate('/FriendList');
+              }
+            } catch (error) {
+              console.error('Error deleting friend: ', error);
+            }
+          }}
+        >
+          Delete Friend
+        </button>
+      </div>
+      <hr className='mb-4' />
+      <Link to={'/FriendList'}>
+        <button className='rounded-md m-2 p-2 border shadow-sm bg-blue-200 hover:bg-blue-300'>
+          Friends List
+        </button>
+      </Link>
     </div>
   );
 };
