@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const FriendList = ({ userId }) => {
   const [friends, setFriends] = useState(null);
@@ -21,10 +22,8 @@ const FriendList = ({ userId }) => {
             credentials: 'include',
           }
         );
-        // const text = await response.text();
-        // console.log(text);
+
         const data = await response.json();
-        // console.log(data);
         setFriends(data);
       } catch (error) {
         console.error('Error reading all friends: ', error);
@@ -43,8 +42,12 @@ const FriendList = ({ userId }) => {
   }
 
   return (
-    <div className='flex justify-center items-center'>
-      <table className='m-2 p-2 rounded-sm shadow-md'>
+    <div className='m-2 p-2 rounded-sm shadow-md'>
+      <h1 className='flex justify-center items-center text-lg font-semibold text-gray-600'>
+        My Friends
+      </h1>
+      <hr className='mb-4' />
+      <table className=''>
         <thead>
           <tr>
             <th className='m-2 p-2'>First Name</th>
@@ -62,6 +65,42 @@ const FriendList = ({ userId }) => {
               <td className='m-2 p-2'>{friend.email}</td>
               <td className='m-2 p-2'>{friend.phoneNumber}</td>
               <td className='m-2 p-2'>{friend.notes}</td>
+              <th>
+                <button className='p-2'>
+                  <Link href={`/ViewFriend/${friend.id}`}>show</Link>
+                </button>
+                <button className='hidden p-2'>
+                  <Link href={`/UpdateFriend/${friend.id}`}>edit</Link>
+                </button>
+                <button
+                  className='p-2'
+                  onClick={async () => {
+                    try {
+                      const token = localStorage.getItem('jwt');
+                      const response = await fetch(
+                        `https://friendrecord-express.onrender.com/api/friends/deleteFriend/${friend?.id}`,
+                        {
+                          method: 'DELETE',
+                          headers: { Authorization: `Bearer ${token}` },
+                          credentials: 'include',
+                        }
+                      );
+                      if (!response.ok) {
+                        throw new Error('HTTP error ' + response.status);
+                      }
+                      console.log('Successfully deleted friend');
+                      const updatedFriendList = friends.filter(
+                        (f) => f.id !== friend.id
+                      );
+                      setFriends(updatedFriendList);
+                    } catch (error) {
+                      console.error('Error deleting friend: ', error);
+                    }
+                  }}
+                >
+                  delete
+                </button>
+              </th>
             </tr>
           ))}
         </tbody>
