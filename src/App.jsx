@@ -11,6 +11,7 @@ import SignUp from './components/SignUp';
 import AddFriend from './components/AddFriend';
 import FriendList from './components/FriendList';
 import UpdateFriend from './components/UpdateFriend';
+import ViewFriend from './components/ViewFriend';
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
           element={
             <AuthenticatedRoute>
               <FriendList />
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path='/ViewFriend'
+          element={
+            <AuthenticatedRoute>
+              <ViewFriend />
             </AuthenticatedRoute>
           }
         />
