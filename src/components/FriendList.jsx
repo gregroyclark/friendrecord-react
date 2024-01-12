@@ -42,7 +42,7 @@ const FriendList = ({ userId }) => {
   }
 
   return (
-    <div className='m-2 p-2 rounded-sm shadow-md'>
+    <div className='m-2 p-2 rounded-sm shadow-md overscroll-x-scroll'>
       <h1 className='flex justify-center items-center text-lg font-semibold text-gray-600'>
         My Friends
       </h1>
@@ -52,25 +52,25 @@ const FriendList = ({ userId }) => {
           <tr>
             <th className='m-2 p-2'>First Name</th>
             <th className='m-2 p-2'>Last Name</th>
-            <th className='m-2 p-2'>Email</th>
+            <th className='hidden sm:block m-2 p-2'>Email</th>
             <th className='m-2 p-2'>Phone</th>
-            <th className='m-2 p-2'>Notes</th>
+            <th className='hidden sm:block m-2 p-2'>Notes</th>
           </tr>
         </thead>
         <tbody>
           {friends.map((friend) => (
             <tr key={friend.id}>
-              <td className='m-2 p-2'>{friend.firstName}</td>
-              <td className='m-2 p-2'>{friend.lastName}</td>
-              <td className='m-2 p-2'>{friend.email}</td>
-              <td className='m-2 p-2'>{friend.phoneNumber}</td>
-              <td className='m-2 p-2'>{friend.notes}</td>
+              <td className='m-4 p-4 sm:m-2 sm:p-2'>{friend.firstName}</td>
+              <td className='m-4 p-4 sm:m-2 sm:p-2'>{friend.lastName}</td>
+              <td className='hidden sm:block m-2 p-2'>{friend.email}</td>
+              <td className='m-4 p-4 sm:m-2 sm:p-2'>{friend.phoneNumber}</td>
+              <td className='hidden sm:block m-2 p-2'>{friend.notes}</td>
               <th>
                 <button className='p-2'>
-                  <Link href={`/ViewFriend/${friend.id}`}>show</Link>
+                  <Link to={`/ViewFriend/${friend.id}`}>show</Link>
                 </button>
                 <button className='hidden p-2'>
-                  <Link href={`/UpdateFriend/${friend.id}`}>edit</Link>
+                  <Link to={`/UpdateFriend/${friend.id}`}>edit</Link>
                 </button>
                 <button
                   className='p-2'
