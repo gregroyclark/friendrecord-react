@@ -90,7 +90,7 @@ const ViewFriend = () => {
             try {
               const token = localStorage.getItem('jwt');
               const response = await fetch(
-                `http://localhost:5000/api/friends/deleteFriend/${friend?.id}`,
+                `https://friendrecord-express.onrender.com/api/friends/deleteFriend/${friend?.id}`,
                 {
                   method: 'DELETE',
                   headers: { Authorization: `Bearer ${token}` },
