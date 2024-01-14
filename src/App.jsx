@@ -47,7 +47,7 @@ function App() {
           }
         />
         <Route
-          path='/UpdateFriend'
+          path='/UpdateFriend/:id'
           element={
             <AuthenticatedRoute>
               <UpdateFriend />
