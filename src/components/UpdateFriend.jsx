@@ -44,7 +44,7 @@ const UpdateFriend = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        `https://friendrecord-express.onrender.com/api/friends/${friend.id}`,
+        `https://friendrecord-express.onrender.com/api/friends/${id}`,
         {
           method: 'PUT',
           headers: {
