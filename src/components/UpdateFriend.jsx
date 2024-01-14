@@ -1,10 +1,46 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const UpdateFriend = ({ friend }) => {
-  const [updatedFriend, setUpdatedFriend] = useState(friend);
+const UpdateFriend = () => {
+  const [originalFriend, setOriginalFriend] = useState(null);
+  const [updatedFriend, setUpdatedFriend] = useState({});
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const readOneFriend = async () => {
+      try {
+        const token = localStorage.getItem('jwt');
+        console.log('token: ', token);
+        const userId = localStorage.getItem('userId');
+        console.log('userId: ', userId);
+        console.log('id: ', id);
+        const response = await fetch(
+          `https://friendrecord-express.onrender.com/api/friends/readOneFriend/${id}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+          }
+        );
+        const data = await response.json();
+        console.log(data);
+        setOriginalFriend(data.rows[0]);
+        setUpdatedFriend(data.rows[0]);
+        // setLoading(false);
+      } catch (error) {
+        console.log('Error reading one friend: ', error);
+      }
+    };
+    readOneFriend();
+  }, [id]);
 
   const updateFriend = async (event) => {
+    const token = localStorage.getItem('jwt');
     event.preventDefault();
     try {
       const response = await fetch(
@@ -20,6 +56,7 @@ const UpdateFriend = ({ friend }) => {
       );
       const data = await response.json();
       console.log(data);
+      navigate(`/ViewFriend/${originalFriend.id}`);
     } catch (error) {
       console.error('Error updating friend: ', error);
     }
@@ -40,6 +77,7 @@ const UpdateFriend = ({ friend }) => {
       );
       const data = await response.json();
       console.log(data);
+      navigate('/FriendList');
     } catch (error) {
       console.error('Error deleting friend: ', error);
     }
@@ -49,6 +87,18 @@ const UpdateFriend = ({ friend }) => {
     const { name, value } = event.target;
     setUpdatedFriend({ ...updatedFriend, [name]: value });
   };
+
+  const FriendList = () => {
+    navigate('/FriendList');
+  };
+
+  if (!originalFriend) {
+    return (
+      <div className='flex justify-center items-center m-2 p-2 rounded-sm shadow-md'>
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className='shadow-md p-2 m-2 rounded-sm'>
@@ -62,7 +112,7 @@ const UpdateFriend = ({ friend }) => {
           <input
             type='text'
             name='firstName'
-            value={updatedFriend.firstName}
+            value={updatedFriend.firstName || ''}
             onChange={handleInputChange}
             className='shadow-md rounded-sm p-2'
           />
@@ -72,8 +122,8 @@ const UpdateFriend = ({ friend }) => {
           <label className=''>Last Name: </label>
           <input
             type='text'
-            name=''
-            value={updatedFriend.lastName}
+            name='lastName'
+            value={updatedFriend.lastName || ''}
             onChange={handleInputChange}
             className='shadow-md p-2 rounded-sm'
           />
@@ -83,8 +133,8 @@ const UpdateFriend = ({ friend }) => {
           <label className=''>Email: </label>
           <input
             type='text'
-            name=''
-            value={updatedFriend.email}
+            name='email'
+            value={updatedFriend.email || ''}
             onChange={handleInputChange}
             className='shadow-md p-2 rounded-sm'
           />
@@ -94,9 +144,9 @@ const UpdateFriend = ({ friend }) => {
           <label className=''>Phone Number: </label>
           <input
             type='text'
-            name=''
+            name='phoneNumber'
             value={updatedFriend.phoneNumber}
-            onChange={handleInputChange}
+            onChange={handleInputChange || ''}
             className='shadow-md p-2 rounded-sm'
           />
         </div>
@@ -105,8 +155,8 @@ const UpdateFriend = ({ friend }) => {
           <label className=''>Notes: </label>
           <input
             type='text'
-            name=''
-            value={updatedFriend.notes}
+            name='notes'
+            value={updatedFriend.notes || ''}
             onChange={handleInputChange}
             className='shadow-md p-2 rounded-sm'
           />
@@ -121,7 +171,8 @@ const UpdateFriend = ({ friend }) => {
         <hr className='mb-4' />
       </form>
       <button
-        onClick={() => readFriends(friend.userId)}
+        onClick={FriendList}
+        // onClick={() => readFriends(friend.userId)}
         className='rounded-md m-2 p-2 border shadow-sm bg-blue-200 hover:bg-blue-300'
       >
         Friends List
